@@ -10,13 +10,12 @@
         :root {
             --main-pink: #fce4ec;
             --text-color: #444;
-            --accent-color: #ffb7c5; /* 달력 포인트용 핑크 */
+            --accent-color: #ffb7c5;
             --dark-pink: #d81b60;
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Nanum Myeongjo', serif;
             background-color: #fff;
             color: var(--text-color);
@@ -26,10 +25,8 @@
 
         #petal-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 100;
         }
@@ -45,38 +42,30 @@
 
         .main-hero {
             height: 100vh;
-            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80');
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* 이름 애니메이션 */
+        /* 이름 애니메이션 - @ 하나로 수정 */
         .name-animation {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             animation: fadeInUp 2.5s ease-out forwards;
             animation-delay: 0.5s;
         }
 
-        /* Razor 에러 방지를 위한 @@ 사용 */
-        @@keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .main-hero h1 {
-            font-size: 2.8rem;
-            margin: 15px 0;
-            letter-spacing: 5px;
-            font-weight: 700;
-        }
-
-        .main-hero p {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
+        .main-hero h1 { font-size: 2.8rem; margin: 15px 0; letter-spacing: 5px; font-weight: 700; }
+        .main-hero p { font-size: 1.1rem; letter-spacing: 2px; }
 
         .gallery-grid {
             display: grid;
@@ -94,55 +83,40 @@
             border: 1px solid #eee;
         }
 
-            .photo-frame img {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                display: block;
-            }
+        .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; }
 
-        /* 5월 2일 핑크 포인트 수정 */
+        /* 달력 스타일 */
+        .calendar-container { max-width: 300px; margin: 0 auto; background: #fff; padding: 20px; }
+        .calendar-table { width: 100%; border-collapse: collapse; }
+        .calendar-table td { padding: 12px 0; font-size: 0.9rem; color: #666; position: relative; text-align: center; }
+
         .wedding-day {
-            color: #ffffff !important; /* 숫자를 흰색으로 */
+            color: #ffffff !important;
             font-weight: bold !important;
             position: relative;
-            z-index: 5; /* 숫자가 원보다 위로 오게 설정 */
+            z-index: 5;
         }
 
-            .wedding-day::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 32px;
-                height: 32px;
-                background-color: #ffb7c5; /* 핑크색 포인트 */
-                border-radius: 50%;
-                z-index: -1; /* 숫자 뒤로 배치 */
-                display: block;
-            }
-
-        /* 달력 테이블 정렬 확인 */
-        .calendar-table td {
-            padding: 12px 0;
-            text-align: center;
-            vertical-align: middle;
-            width: 14.28%; /* 7일 균등 배분 */
+        .wedding-day::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px; height: 32px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: -1;
+            display: block;
         }
 
         .music-player {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 25px; right: 25px;
             z-index: 1001;
             background: rgba(255, 255, 255, 0.95);
-            width: 55px;
-            height: 55px;
+            width: 55px; height: 55px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             font-size: 24px;
@@ -150,7 +124,6 @@
 
         .btn {
             background: var(--main-pink);
-            border: none;
             padding: 12px 25px;
             border-radius: 30px;
             margin-top: 20px;
@@ -168,15 +141,15 @@
 
     <div class="music-player" onclick="toggleMusic()">
         <span id="music-icon">🎵</span>
-        <audio id="bgMusic" loop autoplay preload="auto">
-            <source src="Our_Eternal_Vow.mp3" type="audio/mpeg">
+        <audio id="bgMusic" loop preload="auto">
+            <source src="static/resource/bgm/Love_You_(JTBC_효리네민박2_OST)-1절48kb3.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <section class="main-hero">
         <div class="name-animation">
             <p style="margin-bottom: 5px;">2026. 05. 02. SAT PM 5:00</p>
-            <h1>신동호&신나루미</h1>
+            <h1>신동호 & 신나루미</h1>
             <p>저희 결혼합니다</p>
             <div style="margin-top: 20px; font-size: 1.5rem;">🌸</div>
         </div>
@@ -204,73 +177,31 @@
 
     <section data-aos="fade-up" style="background-color: #fafafa;">
         <div class="calendar-container">
-            <div class="calendar-header">2026. 05</div>
-            <table class="calendar-table">
+            <div class="calendar-header" style="font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 3px;">2026. 05</div>
+            <table class="calendar-table" style="width: 100%;">
                 <thead>
                     <tr>
-                        <th style="color:#d9534f">SUN</th>
-                        <th>MON</th>
-                        <th>TUE</th>
-                        <th>WED</th>
-                        <th>THU</th>
-                        <th>FRI</th>
-                        <th style="color:#5bc0de">SAT</th>
+                        <th style="color:#d9534f">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th style="color:#5bc0de">SAT</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td class="wedding-day">2</td>
+                        <td></td><td></td><td></td><td></td><td></td><td>1</td><td class="wedding-day">2</td>
                     </tr>
                     <tr>
-                        <td style="color:#d9534f">3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td style="color:#5bc0de">9</td>
+                        <td style="color:#d9534f">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td style="color:#5bc0de">9</td>
                     </tr>
                     <tr>
-                        <td style="color:#d9534f">10</td>
-                        <td>11</td>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td style="color:#5bc0de">16</td>
+                        <td style="color:#d9534f">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td style="color:#5bc0de">16</td>
                     </tr>
                     <tr>
-                        <td style="color:#d9534f">17</td>
-                        <td>18</td>
-                        <td>19</td>
-                        <td>20</td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td style="color:#5bc0de">23</td>
+                        <td style="color:#d9534f">17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td style="color:#5bc0de">23</td>
                     </tr>
                     <tr>
-                        <td style="color:#d9534f">24</td>
-                        <td>25</td>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td style="color:#5bc0de">30</td>
+                        <td style="color:#d9534f">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td style="color:#5bc0de">30</td>
                     </tr>
                     <tr>
-                        <td style="color:#d9534f">31</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td style="color:#d9534f">31</td><td></td><td></td><td></td><td></td><td></td><td></td>
                     </tr>
                 </tbody>
             </table>
@@ -299,42 +230,34 @@
         const music = document.getElementById('bgMusic');
         const mIcon = document.getElementById('music-icon');
 
-        // 음악 재생 실행 함수
         function startMusic() {
             if (music.paused) {
                 music.play().then(() => {
                     mIcon.innerText = '🌸';
-                    // 한 번 재생 성공하면 모든 자동 재생 트리거 이벤트 제거
                     removeAllEvents();
-                }).catch(error => {
-                    console.log("브라우저 정책으로 인해 대기 중...");
-                });
+                }).catch(error => console.log("자동 재생 대기 중..."));
             }
         }
 
-        // 이벤트 리스너 등록 (클릭, 터치, 스크롤 시 재생 시도)
         function addAutoPlayEvents() {
             window.addEventListener('click', startMusic);
             window.addEventListener('touchstart', startMusic);
             window.addEventListener('scroll', startMusic);
         }
 
-        // 재생 성공 후 이벤트 제거
         function removeAllEvents() {
             window.removeEventListener('click', startMusic);
             window.removeEventListener('touchstart', startMusic);
             window.removeEventListener('scroll', startMusic);
         }
 
-        // 페이지 로드 시 이벤트 등록
         window.addEventListener('load', addAutoPlayEvents);
 
-        // 수동 제어 버튼 (기존 기능 유지)
         function toggleMusic() {
             if (music.paused) {
                 music.play();
                 mIcon.innerText = '🌸';
-                removeAllEvents(); // 수동으로 틀었을 때도 자동 재생 이벤트 제거
+                removeAllEvents();
             } else {
                 music.pause();
                 mIcon.innerText = '🎵';
@@ -355,7 +278,7 @@
                 this.x = Math.random() * canvas.width;
                 this.y = -20;
                 this.size = Math.random() * 8 + 10;
-                this.speed = Math.random() * 1.0 + 0.7;
+                this.speed = Math.random() * 0.8 + 0.6;
                 this.angle = Math.random() * 360;
                 this.spin = Math.random() * 2 - 1;
                 this.wind = Math.random() * 1.2;
