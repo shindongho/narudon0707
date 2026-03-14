@@ -76,7 +76,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid #eee;
             cursor: pointer;
-            position: relative;
+            position: relative; /* 아이콘 배치를 위해 relative 설정 */
             z-index: 70;
             transition: transform 0.2s ease;
         }
@@ -87,24 +87,43 @@
 
         .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; pointer-events: none; }
 
-        /* --- 모달 스타일 수정: 부드러운 애니메이션 및 흰색 투명 배경 --- */
+        /* --- 확대 마크(돋보기 아이콘) 스타일 추가 --- */
+        .zoom-icon {
+            position: absolute;
+            bottom: 15px; /* 사진 프레임 하단에서 이격 */
+            right: 15px;  /* 사진 프레임 우측에서 이격 */
+            width: 24px;   /* 아이콘 크기 */
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.7); /* 반투명 흰색 배경 */
+            border-radius: 50%; /* 원형 배경 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px; /* 아이콘 폰트 크기 */
+            color: #555;      /* 아이콘 색상 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            pointer-events: none; /* 아이콘 자체는 클릭 불가 */
+            z-index: 80; /* 이미지보다 위에 표시 */
+        }
+
+        /* 모달 스타일 */
         .modal {
-            display: none; /* 기본적으로 숨김 */
+            display: none; 
             position: fixed;
             z-index: 3000;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(255, 255, 255, 0.85); /* 흰색 반투명 배경 */
+            background-color: rgba(255, 255, 255, 0.85); 
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            opacity: 0; /* 초기 투명도 0 */
-            transition: opacity 0.4s ease; /* 페이드 인/아웃 애니메이션 */
+            opacity: 0; 
+            transition: opacity 0.4s ease;
         }
 
         .modal.show {
-            display: flex; /* 보여줄 때 flex로 변경 */
-            opacity: 1; /* 투명도 1로 변경 */
+            display: flex; 
+            opacity: 1; 
         }
 
         .modal-content {
@@ -112,12 +131,12 @@
             max-height: 85%;
             border: 5px solid #fff;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            transform: scale(0.9); /* 초기 크기 약간 작게 */
-            transition: transform 0.4s ease; /* 크기 애니메이션 */
+            transform: scale(0.9); 
+            transition: transform 0.4s ease; 
         }
 
         .modal.show .modal-content {
-            transform: scale(1); /* 보여줄 때 정크기로 변경 */
+            transform: scale(1); 
         }
 
         .music-player {
@@ -170,7 +189,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. 갤러리 동적 생성 (AOS 연동)
+        // 1. 갤러리 동적 생성 (AOS 연동 및 확대 마크 추가)
         const container = document.getElementById('gallery-container');
         for (let i = 1; i <= 20; i++) {
             const frame = document.createElement('div');
@@ -180,31 +199,34 @@
                 const img = this.querySelector('img');
                 openModal(img.src);
             };
-            frame.innerHTML = `<img src="https://picsum.photos/400/600?random=${i + 20}">`;
+            // 이미지와 함께 확대 마크(돋보기 아이콘) 삽입
+            frame.innerHTML = `
+                <img src="https://picsum.photos/400/600?random=${i + 20}">
+                <div class="zoom-icon">🔍</div> `;
             container.appendChild(frame);
         }
 
         AOS.init({ duration: 1200 });
 
-        // 2. 모달 기능 수정: 부드러운 페이드 효과
+        // 2. 모달 기능
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
 
         function openModal(src) {
             modalImg.src = src;
-            modal.style.display = "flex"; // 먼저 flex로 설정
+            modal.style.display = "flex"; 
             setTimeout(() => {
-                modal.classList.add('show'); // 잠시 후 show 클래스 추가하여 애니메이션 실행
+                modal.classList.add('show'); 
             }, 10);
-            document.body.style.overflow = "hidden"; // 스크롤 방지
+            document.body.style.overflow = "hidden"; 
         }
 
         function closeModal() {
-            modal.classList.remove('show'); // show 클래스 제거하여 페이드 아웃
+            modal.classList.remove('show'); 
             setTimeout(() => {
-                modal.style.display = "none"; // 애니메이션이 끝난 후 숨김
-            }, 400); // transition 시간과 동일하게 설정
-            document.body.style.overflow = "auto"; // 스크롤 복구
+                modal.style.display = "none"; 
+            }, 400); 
+            document.body.style.overflow = "auto"; 
         }
 
         // 3. 음악 재생 로직
