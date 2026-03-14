@@ -40,7 +40,7 @@
         justify-content: center;
     }
 
-    /* 메인 히어로 보정: 글자가 안 보일 경우 오버레이 투명도를 조절하세요 */
+   
     .main-hero {
         height: 100vh;
         background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), 
@@ -50,10 +50,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative; /* 자식 요소 배치 기준 */
+        position: relative; 
     }
 
-    /* 이름 애니메이션 - 확실히 보이도록 강제 가시성 부여 */
+    
     .name-animation {
         opacity: 0;
         transform: translateY(30px);
@@ -63,7 +63,7 @@
         text-align: center;
     }
 
-    /* @keyframes 하나만 사용 (GitHub Pages 호환) */
+    
     @keyframes fadeInUp {
         from { 
             opacity: 0; 
@@ -75,13 +75,13 @@
         }
     }
 
-    /* 글자 강조: 배경 사진 위에서 더 잘 보이도록 설정 */
+    
     .main-hero h1 { 
         font-size: 2.8rem; 
         margin: 15px 0; 
         letter-spacing: 5px; 
         font-weight: 700; 
-        color: #222; /* 글자색을 조금 더 진하게 변경 */
+        color: #222; 
     }
 
     .main-hero p { 
@@ -108,7 +108,7 @@
 
     .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; }
 
-    /* 달력 스타일 (5월 2일 핑크 포인트) */
+    
     .calendar-container { max-width: 300px; margin: 0 auto; background: #fff; padding: 20px; }
     .calendar-table { width: 100%; border-collapse: collapse; }
     .calendar-table td { padding: 12px 0; font-size: 0.9rem; color: #666; position: relative; text-align: center; }
@@ -165,7 +165,7 @@
     <div class="music-player" onclick="toggleMusic()">
         <span id="music-icon">🎵</span>
         <audio id="bgMusic" loop preload="auto">
-            <source src="static/resource/bgm/Love_You_(JTBC_효리네민박2_OST)-1절48kb3.mp3" type="audio/mpeg">
+            <source src="Our_Eternal_Vow.mp3" type="audio/mpeg">
         </audio>
     </div>
 
