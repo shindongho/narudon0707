@@ -87,7 +87,7 @@
 
         .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; pointer-events: none; }
 
-        /* --- 확대 마크(돋보기 아이콘) 스타일 추가 --- */
+        /* --- 화살표 마크(네 방향 화살표 아이콘) 스타일 추가 --- */
         .zoom-icon {
             position: absolute;
             bottom: 15px; /* 사진 프레임 하단에서 이격 */
@@ -189,7 +189,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. 갤러리 동적 생성 (AOS 연동 및 확대 마크 추가)
+        // 1. 갤러리 동적 생성 (AOS 연동 및 화살표 마크 추가)
         const container = document.getElementById('gallery-container');
         for (let i = 1; i <= 20; i++) {
             const frame = document.createElement('div');
@@ -199,10 +199,10 @@
                 const img = this.querySelector('img');
                 openModal(img.src);
             };
-            // 이미지와 함께 확대 마크(돋보기 아이콘) 삽입
+            // 이미지와 함께 화살표 마크(네 방향 화살표 아이콘) 삽입
             frame.innerHTML = `
                 <img src="https://picsum.photos/400/600?random=${i + 20}">
-                <div class="zoom-icon">🔍</div> `;
+                <div class="zoom-icon">⤢</div> `;
             container.appendChild(frame);
         }
 
