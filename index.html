@@ -27,8 +27,8 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 100;
+            pointer-events: none; 
+            z-index: 50;
         }
 
         section {
@@ -50,38 +50,15 @@
             align-items: center;
             justify-content: center;
             position: relative; 
+            z-index: 10;
             cursor: pointer;
         }
 
         .name-animation {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 2.5s ease-out forwards;
-            animation-delay: 0.3s;
-            z-index: 10;
+            z-index: 20;
             text-align: center;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .main-hero h1 { 
-            font-size: 2.8rem; 
-            margin: 15px 0; 
-            letter-spacing: 5px; 
-            font-weight: 700; 
-            color: #222; 
-        }
-
-        .main-hero p { 
-            font-size: 1.1rem; 
-            letter-spacing: 2px; 
-            color: #333; 
-        }
-
-        /* 갤러리 관련 스타일 */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -89,6 +66,8 @@
             padding: 10px;
             max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 60;
         }
 
         .photo-frame {
@@ -97,63 +76,48 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid #eee;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 70;
+            transition: transform 0.2s ease;
         }
 
         .photo-frame:hover {
             transform: scale(1.02);
         }
 
-        .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; pointer-events: none; }
 
-        /* 모달 스타일 */
+        /* --- 모달 스타일 수정: 부드러운 애니메이션 및 흰색 투명 배경 --- */
         .modal {
-            display: none;
+            display: none; /* 기본적으로 숨김 */
             position: fixed;
-            z-index: 2000;
+            z-index: 3000;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(255, 255, 255, 0.85); /* 흰색 반투명 배경 */
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
+            cursor: pointer;
+            opacity: 0; /* 초기 투명도 0 */
+            transition: opacity 0.4s ease; /* 페이드 인/아웃 애니메이션 */
+        }
+
+        .modal.show {
+            display: flex; /* 보여줄 때 flex로 변경 */
+            opacity: 1; /* 투명도 1로 변경 */
         }
 
         .modal-content {
             max-width: 90%;
-            max-height: 80%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-height: 85%;
             border: 5px solid #fff;
-            animation: zoomIn 0.3s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transform: scale(0.9); /* 초기 크기 약간 작게 */
+            transition: transform 0.4s ease; /* 크기 애니메이션 */
         }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* 캘린더 및 기타 스타일 */
-        .calendar-container { max-width: 300px; margin: 0 auto; background: #fff; padding: 20px; }
-        .calendar-table { width: 100%; border-collapse: collapse; }
-        .calendar-table td { padding: 12px 0; font-size: 0.9rem; color: #666; position: relative; text-align: center; }
-
-        .wedding-day {
-            color: #ffffff !important;
-            font-weight: bold !important;
-            position: relative;
-            z-index: 5;
-        }
-
-        .wedding-day::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 32px; height: 32px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            z-index: -1;
-            display: block;
+        .modal.show .modal-content {
+            transform: scale(1); /* 보여줄 때 정크기로 변경 */
         }
 
         .music-player {
@@ -166,19 +130,6 @@
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            font-size: 24px;
-        }
-
-        .btn {
-            background: var(--main-pink);
-            padding: 12px 25px;
-            border-radius: 30px;
-            margin-top: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--dark-pink);
-            text-decoration: none;
-            display: inline-block;
         }
     </style>
 </head>
@@ -190,7 +141,7 @@
         <img class="modal-content" id="modalImg">
     </div>
 
-    <div class="music-player" onclick="toggleMusic()">
+    <div class="music-player" onclick="toggleMusic(event)">
         <span id="music-icon">🎵</span>
         <audio id="bgMusic" loop preload="auto">
             <source src="./Our_Eternal_Vow.mp3" type="audio/mpeg">
@@ -199,78 +150,64 @@
 
     <section class="main-hero" onclick="startMusic()"> 
         <div class="name-animation">
-            <p style="margin-bottom: 5px;">2026. 05. 02. SAT PM 5:00</p>
+            <p>2026. 05. 02. SAT PM 5:00</p>
             <h1>신동호&신나루미</h1>
             <p>저희 결혼합니다</p>
-            <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">(화면을 터치하면 음악이 시작됩니다 🌸)</p>
+            <p style="font-size: 0.8rem; color: #888;">(화면을 터치하면 음악이 시작됩니다 🌸)</p>
         </div>
-    </section>
-
-    <section data-aos="fade-up">
-        <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem;">INVITATION</h3>
-        <p style="margin-top: 30px;">
-            함께 맞는 세 번째 봄,<br>
-            서로의 따뜻한 반려자가 되기로 약속했습니다.<br>
-            귀한 걸음으로 저희의 시작을 축복해 주세요.
-        </p>
     </section>
 
     <section>
-        <h3 data-aos="fade-up" style="margin-bottom: 30px; font-size: 0.9rem; letter-spacing: 5px; color: #888;">GALLERY</h3>
-        <div class="gallery-grid">
-            <script>
-                for (let i = 1; i <= 20; i++) {
-                    // 클릭 시 openModal 함수가 실행되도록 수정
-                    document.write(`
-                        <div class="photo-frame" data-aos="zoom-in" onclick="openModal(this)">
-                            <img src="https://picsum.photos/400/600?random=${i + 20}" alt="사진">
-                        </div>`);
-                }
-            </script>
-        </div>
+        <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem; margin-bottom: 30px;">GALLERY</h3>
+        <div class="gallery-grid" id="gallery-container">
+            </div>
     </section>
 
-    <section data-aos="fade-up" style="background-color: #fafafa;">
-        <div class="calendar-container">
-            <div class="calendar-header" style="font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 3px;">2026. 05</div>
-            <table class="calendar-table">
-                <thead>
-                    <tr>
-                        <th style="color:#d9534f">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th style="color:#5bc0de">SAT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td class="wedding-day">2</td></tr>
-                    <tr><td style="color:#d9534f">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td style="color:#5bc0de">9</td></tr>
-                    <tr><td style="color:#d9534f">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td style="color:#5bc0de">16</td></tr>
-                    <tr><td style="color:#d9534f">17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td style="color:#5bc0de">23</td></tr>
-                    <tr><td style="color:#d9534f">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td style="color:#5bc0de">30</td></tr>
-                    <tr><td style="color:#d9534f">31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                </tbody>
-            </table>
-            <p style="margin-top: 25px; font-size: 0.85rem; color: #888;">5월 2일 토요일 오후 5시</p>
-        </div>
-    </section>
-
-    <section data-aos="fade-up">
-        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">LOCATION</h3>
-        <p style="margin-top:20px;"><strong>삼청각</strong><br>서울특별시 성북구 대사관로 3</p>
-        <div style="width:100%; max-width:500px; height:250px; background:#f0f0f0; border-radius:10px; cursor:pointer; margin: 20px auto; display:flex; align-items:center; justify-content:center;" onclick="window.open('https://m.map.naver.com/route.nhn?dname=삼청각')">
-            <p style="font-size: 0.9rem; color: #999;">지도를 누르면 네이버 지도로 연결됩니다</p>
-        </div>
-        <a href="https://m.map.naver.com/route.nhn?dname=삼청각" target="_blank" class="btn">네이버 지도로 보기</a>
-    </section>
-
-    <footer style="padding: 60px 20px; color: #bbb; font-size: 0.8rem;">
+    <footer style="padding: 60px 20px; color: #bbb; text-align: center; font-size: 0.8rem;">
         <p>신랑 신동호 & 신부 신나루미</p>
         <p>Copyright 2026. All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // 1. 갤러리 동적 생성 (AOS 연동)
+        const container = document.getElementById('gallery-container');
+        for (let i = 1; i <= 20; i++) {
+            const frame = document.createElement('div');
+            frame.className = 'photo-frame';
+            frame.setAttribute('data-aos', 'zoom-in');
+            frame.onclick = function() {
+                const img = this.querySelector('img');
+                openModal(img.src);
+            };
+            frame.innerHTML = `<img src="https://picsum.photos/400/600?random=${i + 20}">`;
+            container.appendChild(frame);
+        }
+
         AOS.init({ duration: 1200 });
 
-        // --- 음악 재생 로직 ---
+        // 2. 모달 기능 수정: 부드러운 페이드 효과
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+
+        function openModal(src) {
+            modalImg.src = src;
+            modal.style.display = "flex"; // 먼저 flex로 설정
+            setTimeout(() => {
+                modal.classList.add('show'); // 잠시 후 show 클래스 추가하여 애니메이션 실행
+            }, 10);
+            document.body.style.overflow = "hidden"; // 스크롤 방지
+        }
+
+        function closeModal() {
+            modal.classList.remove('show'); // show 클래스 제거하여 페이드 아웃
+            setTimeout(() => {
+                modal.style.display = "none"; // 애니메이션이 끝난 후 숨김
+            }, 400); // transition 시간과 동일하게 설정
+            document.body.style.overflow = "auto"; // 스크롤 복구
+        }
+
+        // 3. 음악 재생 로직
         const music = document.getElementById('bgMusic');
         const mIcon = document.getElementById('music-icon');
 
@@ -279,28 +216,12 @@
                 try {
                     await music.play();
                     mIcon.innerText = '🌸';
-                    removeAllEvents();
-                } catch (error) {
-                    console.log("상호작용 대기 중...");
-                }
+                } catch (e) { console.log("대기중"); }
             }
         }
 
-        function addAutoPlayEvents() {
-            ['click', 'touchstart', 'scroll'].forEach(ev => {
-                window.addEventListener(ev, startMusic, { once: true });
-            });
-        }
-
-        function removeAllEvents() {
-            ['click', 'touchstart', 'scroll'].forEach(ev => {
-                window.removeEventListener(ev, startMusic);
-            });
-        }
-
-        window.addEventListener('load', addAutoPlayEvents);
-
-        function toggleMusic() {
+        function toggleMusic(e) {
+            e.stopPropagation();
             if (music.paused) {
                 music.play();
                 mIcon.innerText = '🌸';
@@ -310,69 +231,40 @@
             }
         }
 
-        // --- 모달 로직 추가 ---
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImg");
+        window.addEventListener('scroll', startMusic, { once: true });
+        window.addEventListener('click', startMusic, { once: true });
 
-        function openModal(element) {
-            const clickedImgSrc = element.getElementsByTagName('img')[0].src;
-            modal.style.display = "flex";
-            modalImg.src = clickedImgSrc;
-            document.body.style.overflow = "hidden"; // 모달 오픈 시 스크롤 방지
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto"; // 모달 닫을 때 스크롤 복구
-        }
-
-        // --- 벚꽃 흩날리는 효과 ---
+        // 4. 벚꽃 효과 (Canvas)
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         let petals = [];
-        const petalCount = 40;
-
         class Petal {
             constructor() { this.reset(); this.y = Math.random() * canvas.height; }
             reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = -20;
-                this.size = Math.random() * 8 + 10;
-                this.speed = Math.random() * 0.8 + 0.6;
-                this.angle = Math.random() * 360;
-                this.spin = Math.random() * 2 - 1;
+                this.x = Math.random() * canvas.width; this.y = -20;
+                this.size = Math.random() * 8 + 10; this.speed = Math.random() * 0.8 + 0.6;
+                this.angle = Math.random() * 360; this.spin = Math.random() * 2 - 1;
                 this.wind = Math.random() * 1.2;
-                const colors = ['rgba(255, 182, 193, 0.6)', 'rgba(255, 225, 235, 0.5)', 'rgba(255, 255, 255, 0.5)'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-            }
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle * Math.PI / 180);
-                ctx.beginPath();
-                ctx.ellipse(0, 0, this.size, this.size / 1.6, 0, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.restore();
+                this.color = ['rgba(255, 182, 193, 0.6)', 'rgba(255, 225, 235, 0.5)'][Math.floor(Math.random() * 2)];
             }
             update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.y / 60) * this.wind;
-                this.angle += this.spin;
-                if (this.y > canvas.height) { this.reset(); }
+                this.y += this.speed; this.x += Math.sin(this.y / 60) * this.wind;
+                this.angle += this.spin; if (this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle * Math.PI / 180);
+                ctx.beginPath(); ctx.ellipse(0, 0, this.size, this.size / 1.6, 0, 0, Math.PI * 2);
+                ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
             }
         }
-
-        function init() { for (let i = 0; i < petalCount; i++) { petals.push(new Petal()); } }
+        for (let i = 0; i < 40; i++) petals.push(new Petal());
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             petals.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
-        init();
         animate();
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
