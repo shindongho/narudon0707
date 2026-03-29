@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신동호&신나루미 결혼합니다</title>
+    
+    <!-- 카카오톡 외부 브라우저 열기 -->
+    <script>
+        if (/KAKAOTALK/i.test(navigator.userAgent)) {
+            // 카카오톡 인앱 브라우저인 경우 외부 브라우저 실행 유도
+            location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(window.location.href);
+        }
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Serif+KR:wght@200;400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
