@@ -610,15 +610,22 @@
         .kakao-banner-text {
             font-size: 0.9rem;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 600;
+        }
+
+        .kakao-banner-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .kakao-banner-btn {
             display: inline-block;
             background: #333;
             color: #FFE812;
-            padding: 8px 20px;
+            padding: 8px 16px;
             border: none;
             border-radius: 20px;
             font-weight: bold;
@@ -631,8 +638,18 @@
             transform: scale(0.95);
         }
 
+        .kakao-banner-btn.safari {
+            background: #0066FF;
+            color: #fff;
+        }
+
+        .kakao-banner-btn.chrome {
+            background: #EA4335;
+            color: #fff;
+        }
+
         body.kakao-detected {
-            padding-top: 60px;
+            padding-top: 65px;
         }
     </style>
 </head>
@@ -640,8 +657,11 @@
 
     <!-- 카카오톡 브라우저 알림 배너 -->
     <div id="kakaoBanner" class="kakao-banner">
-        <div class="kakao-banner-text">카카오톡 브라우저에서 열려 있습니다</div>
-        <button class="kakao-banner-btn" onclick="openInExternalBrowser()">기본 브라우저로 열기</button>
+        <div class="kakao-banner-text">🔗 선호하는 브라우저로 열기</div>
+        <div class="kakao-banner-buttons">
+            <button class="kakao-banner-btn safari" onclick="openInSafari()">Safari로 열기</button>
+            <button class="kakao-banner-btn chrome" onclick="openInChrome()">Chrome으로 열기</button>
+        </div>
     </div>
 
     <div id="loadingOverlay" class="loading-overlay">
@@ -1087,24 +1107,36 @@
             }
         }
 
-        // 외부 브라우저로 열기
-        function openInExternalBrowser() {
+        // Safari로 열기
+        function openInSafari() {
             const currentUrl = window.location.href;
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             
             if (isIOS) {
-                // iOS - URL을 복사하고 Safari에서 열도록 안내
-                const textarea = document.createElement('textarea');
-                textarea.value = currentUrl;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                
-                alert('URL이 복사되었습니다.\n\nSafari를 열어서 주소창에 붙여넣기(길게 누르고 붙여넣기) 후 이동해주세요.');
+                // iOS - Safari로 열기
+                window.location.href = currentUrl;
             } else {
-                // Android - 카카오톡 외부 브라우저로 열기
-                window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(currentUrl);
+                // Android - 알림
+                alert('Android에서는 Safari가 없습니다.\nChrome으로 열어주세요.');
+            }
+        }
+
+        // Chrome으로 열기
+        function openInChrome() {
+            const currentUrl = window.location.href;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if (isIOS) {
+                // iOS - Chrome으로 열기 (googlechromes:// scheme)
+                const chromeUrl = 'googlechromes://' + currentUrl.replace(/^https?:\/\//, '');
+                window.location.href = chromeUrl;
+            } else {
+                // Android - Chrome으로 열기
+                try {
+                    window.location.href = 'intent://' + currentUrl.split('://')[1] + '#Intent;action=android.intent.action.VIEW;data=' + encodeURIComponent(currentUrl) + ';package=com.android.chrome;scheme=https;end';
+                } catch(e) {
+                    window.location.href = currentUrl;
+                }
             }
         }
 
