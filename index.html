@@ -481,9 +481,11 @@
     </div>
 
     <div id="attendanceModal" class="popup-modal">
-        <button style="position: absolute; top: 220px; right: 20px; background: rgba(255,255,255,0.9); border: none; font-size: 1.8rem; cursor: pointer; color: #999; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 2002;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.color='#d81b60';" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.color='#999';" onclick="closeAttendanceModal()">×</button>
         <div class="popup-modal-inner" onclick="event.stopPropagation()">
-            <div class="title">참석 의사 전달</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div class="title" style="margin: 0;">참석 의사 전달</div>
+                <button style="background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #999; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;" onmouseover="this.style.color='#d81b60';" onmouseout="this.style.color='#999';" onclick="closeAttendanceModal()">×</button>
+            </div>
             <div class="content">축하의 마음으로 참석해주시는<br>모든 분들을 귀하게 모실 수 있도록<br>참석 의사를 전달 부탁드립니다.</div>
             <div class="info">
                 <div>
@@ -599,7 +601,7 @@
 
     <section class="main-hero">
         <div class="name-animation">
-            <p>2026. 05. 02. SAT PM 5:00</p>
+            <p>2026. 05. 02. SAT 5:00 PM </p>
             <h2>신동호&신나루미</h2>
         </div>
     </section>
