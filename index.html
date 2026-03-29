@@ -8,8 +8,17 @@
     <!-- 카카오톡 외부 브라우저 열기 -->
     <script>
         if (/KAKAOTALK/i.test(navigator.userAgent)) {
-            // 카카오톡 인앱 브라우저인 경우 외부 브라우저 실행 유도
-            location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(window.location.href);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if (isIOS) {
+                // iOS: 사용자에게 안내 후 Safari로 열기
+                alert('Safari 브라우저에서 열기를 권장합니다.\n\n아래 링크를 복사하여 Safari에서 열거나,\n"호스트에서 열기"를 선택하세요.');
+                // Safari로 직접 열도록 시도
+                window.location.href = 'safari-reader://' + window.location.href.replace(/^https?:\/\//, '');
+            } else {
+                // Android: 기본 브라우저로 열기
+                location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(window.location.href);
+            }
         }
     </script>
     
