@@ -1093,16 +1093,18 @@
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             
             if (isIOS) {
-                // iOS - Safari로 열기
-                window.location.href = 'https://share.kakao.com/redirect?url=' + encodeURIComponent(currentUrl);
+                // iOS - URL을 복사하고 Safari에서 열도록 안내
+                const textarea = document.createElement('textarea');
+                textarea.value = currentUrl;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                alert('URL이 복사되었습니다.\n\nSafari를 열어서 주소창에 붙여넣기(길게 누르고 붙여넣기) 후 이동해주세요.');
             } else {
-                // Android - 기본 브라우저로 열기
-                try {
-                    window.location.href = 'intent://web#Intent;action=android.intent.action.VIEW;data=' + encodeURIComponent(currentUrl) + ';scheme=http;end';
-                } catch(e) {
-                    // Fallback
-                    window.location.href = currentUrl;
-                }
+                // Android - 카카오톡 외부 브라우저로 열기
+                window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(currentUrl);
             }
         }
 
