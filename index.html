@@ -589,23 +589,60 @@
             text-align: center;
         }
 
-        /* 반응형 */
-        @media (max-width: 600px) {
-            .spinner {
-                width: 40px;
-                height: 40px;
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                border-top: 4px solid #fff;
-            }
+        /* 카카오톡 알림 배너 */
+        .kakao-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #FFE812 0%, #FFDA00 100%);
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 10000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
-            .loading-text {
-                font-size: 0.9rem;
-                margin-top: 15px;
-            }
+        .kakao-banner.show {
+            display: block;
+        }
+
+        .kakao-banner-text {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .kakao-banner-btn {
+            display: inline-block;
+            background: #333;
+            color: #FFE812;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .kakao-banner-btn:active {
+            transform: scale(0.95);
+        }
+
+        body.kakao-detected {
+            padding-top: 60px;
         }
     </style>
 </head>
 <body>
+
+    <!-- 카카오톡 브라우저 알림 배너 -->
+    <div id="kakaoBanner" class="kakao-banner">
+        <div class="kakao-banner-text">카카오톡 브라우저에서 열려 있습니다</div>
+        <button class="kakao-banner-btn" onclick="openInExternalBrowser()">기본 브라우저로 열기</button>
+    </div>
 
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-container">
@@ -1038,6 +1075,39 @@
                 showAttendanceModal();
             }, 500);
         });
+
+        // 카카오톡 브라우저 감지
+        function checkKakaoTalk() {
+            const isKakaoTalk = /KAKAOTALK/i.test(navigator.userAgent);
+            const kakaoBanner = document.getElementById('kakaoBanner');
+            
+            if (isKakaoTalk && kakaoBanner) {
+                kakaoBanner.classList.add('show');
+                document.body.classList.add('kakao-detected');
+            }
+        }
+
+        // 외부 브라우저로 열기
+        function openInExternalBrowser() {
+            const currentUrl = window.location.href;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if (isIOS) {
+                // iOS - Safari로 열기
+                window.location.href = 'https://share.kakao.com/redirect?url=' + encodeURIComponent(currentUrl);
+            } else {
+                // Android - 기본 브라우저로 열기
+                try {
+                    window.location.href = 'intent://web#Intent;action=android.intent.action.VIEW;data=' + encodeURIComponent(currentUrl) + ';scheme=http;end';
+                } catch(e) {
+                    // Fallback
+                    window.location.href = currentUrl;
+                }
+            }
+        }
+
+        // 페이지 로드 시 카카오톡 확인
+        window.addEventListener('load', checkKakaoTalk);
     </script>
 </body>
 </html>
