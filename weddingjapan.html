@@ -978,7 +978,7 @@
             <p>
             心を込めたお料理を<br>楽しんでいただけましたら幸いです。
         </p>
-        <a href="menu.html" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
+        <a href="menujapan.html" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
                 メニューを見る
             </a>
     </section>
@@ -1175,7 +1175,7 @@
             const accompany = document.getElementById('rsvp-accompany').value;
 
             if (!name || !count) {
-                alert('성함과 참석인원을 입력해주세요.');
+                alert('お名前と参加人数を入力してください。');
                 return;
             }
 
@@ -1203,13 +1203,13 @@
                     loadingOverlay.classList.remove('show');
 
                     if (result.success) {
-                        alert('참석 의사가 전달되었습니다. 감사합니다!');
+                        alert('送信しました。 ありがとうございます!');
                         document.getElementById('rsvp-name').value = '';
                         document.getElementById('rsvp-count').value = '';
                         document.getElementById('rsvp-accompany').value = '';
                         closeRsvpModal();
                     } else {
-                        alert('참석 의사가 저장되었습니다!');
+                        alert('送信しました。 ありがとうございます!');
                         document.getElementById('rsvp-name').value = '';
                         document.getElementById('rsvp-count').value = '';
                         document.getElementById('rsvp-accompany').value = '';
@@ -1221,7 +1221,7 @@
                     loadingOverlay.classList.remove('show');
 
                     console.error('Error:', error);
-                    alert('참석 의사가 저장되었습니다!');
+                    alert('送信しました。 ありがとうございます!');
                     document.getElementById('rsvp-name').value = '';
                     document.getElementById('rsvp-count').value = '';
                     document.getElementById('rsvp-accompany').value = '';
