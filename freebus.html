@@ -33,10 +33,23 @@
     </div>
 
     <div class="source">※ 画像をタップすると拡大表示します。</div>
-    <a class="btn" href="#" onclick="window.print();return false;">このページを印刷</a>
+    <a class="btn" href="#" id="saveBtn">バス時刻表をアルバムに保存</a>
   </div>
 
   <script>
+    function downloadImage(url, filename) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', function(event) {
+      event.preventDefault();
+      downloadImage('時刻表.jpg', '時刻表.jpg');
+    });
     document.getElementById('timetableImg').addEventListener('click', function() {
       document.getElementById('imgLightbox').classList.add('show');
       document.getElementById('lightboxImage').src = this.src;
