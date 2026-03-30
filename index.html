@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(self), gyroscope=(self), magnetometer=(self)">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>신동호&신나루미 결혼합니다</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Serif+KR:wght@200;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Serif+KR:wght@200;400&display=swap"
+        rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
@@ -18,7 +22,8 @@
         }
 
         body {
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             font-family: 'Nanum Myeongjo', serif;
             background-color: #fff;
             color: var(--text-color);
@@ -28,8 +33,10 @@
 
         #star-canvas {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 100;
         }
@@ -45,8 +52,8 @@
 
         .main-hero {
             height: 100vh;
-            background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), 
-                        url('CIC_0176맨앞장.JPG');
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url('CIC_0176맨앞장.JPG');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -67,22 +74,29 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .main-hero h2 { 
-            font-size: 1.8rem; 
-            margin: 1px 0; 
-            letter-spacing: 5px; 
-            font-weight: 700; 
-            color: #222; 
+        .main-hero h2 {
+            font-size: 1.8rem;
+            margin: 1px 0;
+            letter-spacing: 5px;
+            font-weight: 700;
+            color: #222;
         }
 
-        .main-hero p { 
-            font-size: 1.1rem; 
-            letter-spacing: 2px; 
-            color: #333; 
+        .main-hero p {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #333;
         }
 
         /* 반응형 - 타블렛 */
@@ -152,23 +166,35 @@
         .photo-frame {
             background: #fff;
             padding: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             border: 1px solid #eee;
-            cursor: pointer; /* 클릭 가능 표시 */
+            cursor: pointer;
+            /* 클릭 가능 표시 */
             transition: transform 0.2s ease;
         }
-        
-        .photo-frame:active { transform: scale(0.98); }
 
-        .photo-frame img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .photo-frame:active {
+            transform: scale(0.98);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
 
         /* --- 모달 관련 CSS 추가 --- */
         .modal {
-            display: none; /* 기본 숨김 */
+            display: none;
+            /* 기본 숨김 */
             position: fixed;
-            z-index: 2000; /* 최상단 */
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            z-index: 2000;
+            /* 최상단 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
@@ -179,13 +205,20 @@
             max-width: 95%;
             max-height: 85%;
             border-radius: 4px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             animation: zoomIn 0.3s ease;
         }
 
         @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .modal-close-hint {
@@ -195,11 +228,28 @@
             font-size: 0.8rem;
             opacity: 0.7;
         }
+
         /* ------------------------- */
 
-        .calendar-container { max-width: 300px; margin: 0 auto; background: #fff; padding: 20px; }
-        .calendar-table { width: 100%; border-collapse: collapse; }
-        .calendar-table td { padding: 12px 0; font-size: 0.9rem; color: #666; position: relative; text-align: center; }
+        .calendar-container {
+            max-width: 300px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar-table td {
+            padding: 12px 0;
+            font-size: 0.9rem;
+            color: #666;
+            position: relative;
+            text-align: center;
+        }
 
         .wedding-day {
             color: #ffffff !important;
@@ -211,9 +261,11 @@
         .wedding-day::before {
             content: '';
             position: absolute;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             background-color: var(--accent-color);
             border-radius: 50%;
             z-index: -1;
@@ -222,14 +274,18 @@
 
         .music-player {
             position: fixed;
-            bottom: 25px; right: 25px;
+            bottom: 25px;
+            right: 25px;
             z-index: 1001;
             background: rgba(255, 255, 255, 0.95);
-            width: 55px; height: 55px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             font-size: 24px;
         }
 
@@ -250,8 +306,10 @@
             display: none;
             position: fixed;
             z-index: 2001;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
@@ -263,8 +321,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .popup-modal-inner {
@@ -273,13 +336,20 @@
             padding: 30px 20px;
             max-width: 400px;
             width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.4s ease;
         }
 
         @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .popup-modal-inner .title {
@@ -305,14 +375,14 @@
             margin-bottom: 25px;
         }
 
-        .popup-modal-inner .info > div {
+        .popup-modal-inner .info>div {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 15px;
         }
 
-        .popup-modal-inner .info > div:last-child {
+        .popup-modal-inner .info>div:last-child {
             margin-bottom: 0;
         }
 
@@ -373,8 +443,10 @@
         .rsvp-modal-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
             z-index: 2002;
             justify-content: center;
@@ -388,7 +460,7 @@
         .v--modal-box {
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
             animation: slideUp 0.4s ease;
@@ -473,7 +545,7 @@
             flex-wrap: wrap;
         }
 
-        .radio > div {
+        .radio>div {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -563,8 +635,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-text {
@@ -585,7 +662,7 @@
             padding: 15px 20px;
             text-align: center;
             z-index: 10000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .kakao-banner.show {
@@ -638,7 +715,9 @@
         }
     </style>
 </head>
+
 <body>
+    <canvas id="star-canvas"></canvas>
 
     <!-- 카카오톡 브라우저 알림 배너 -->
     <div id="kakaoBanner" class="kakao-banner">
@@ -665,7 +744,10 @@
         <div class="popup-modal-inner" onclick="event.stopPropagation()">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <div class="title" style="margin: 0;">참석 의사 전달</div>
-                <button style="background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #999; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;" onmouseover="this.style.color='#d81b60';" onmouseout="this.style.color='#999';" onclick="closeAttendanceModal()">×</button>
+                <button
+                    style="background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #999; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;"
+                    onmouseover="this.style.color='#d81b60';" onmouseout="this.style.color='#999';"
+                    onclick="closeAttendanceModal()">×</button>
             </div>
             <div class="content">축하의 마음으로 참석해주시는<br>모든 분들을 귀하게 모실 수 있도록<br>참석 의사를 전달 부탁드립니다.</div>
             <div class="info">
@@ -696,13 +778,17 @@
                 <span>참석 의사 전달</span>
                 <button class="btn-close" onclick="closeRsvpModal()">
                     <svg width="15px" height="15px" viewBox="0 0 15 15" fill="black" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.7929 7.49998L1.14645 1.85353L1.85356 1.14642L7.50001 6.79287L13.1465 1.14642L13.8536 1.85353L8.20711 7.49998L13.8536 13.1464L13.1465 13.8535L7.50001 8.20708L1.85356 13.8535L1.14645 13.1464L6.7929 7.49998Z"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M6.7929 7.49998L1.14645 1.85353L1.85356 1.14642L7.50001 6.79287L13.1465 1.14642L13.8536 1.85353L8.20711 7.49998L13.8536 13.1464L13.1465 13.8535L7.50001 8.20708L1.85356 13.8535L1.14645 13.1464L6.7929 7.49998Z">
+                        </path>
                     </svg>
                 </button>
             </div>
             <div class="rsvp-modal-wrap">
                 <div style="margin-bottom: 15px;">
-                    <button style="background: none; border: none; color: var(--dark-pink); cursor: pointer; font-size: 0.9rem; font-weight: 600; padding: 0; display: flex; align-items: center; gap: 5px;" onclick="backToAttendanceModal()">
+                    <button
+                        style="background: none; border: none; color: var(--dark-pink); cursor: pointer; font-size: 0.9rem; font-weight: 600; padding: 0; display: flex; align-items: center; gap: 5px;"
+                        onclick="backToAttendanceModal()">
                         <span>←</span> 뒤로가기
                     </button>
                 </div>
@@ -718,7 +804,8 @@
                                 <td>
                                     <div class="radio">
                                         <div>
-                                            <input type="radio" id="rsvp-side-gr" name="rsvp-side" value="groom" checked>
+                                            <input type="radio" id="rsvp-side-gr" name="rsvp-side" value="groom"
+                                                checked>
                                             <label for="rsvp-side-gr" class="blue-fill">신랑측</label>
                                         </div>
                                         <div>
@@ -737,7 +824,9 @@
                             <tr>
                                 <th>참석인원</th>
                                 <td>
-                                    <input type="number" id="rsvp-count" placeholder="본인 포함 총 참석인원" min="1" max="100" inputmode="numeric" onkeypress="return /[0-9]/.test(String.fromCharCode(event.which))">
+                                    <input type="number" id="rsvp-count" placeholder="본인 포함 총 참석인원" min="1" max="100"
+                                        inputmode="numeric"
+                                        onkeypress="return /[0-9]/.test(String.fromCharCode(event.which))">
                                 </td>
                             </tr>
                             <tr>
@@ -751,7 +840,8 @@
                                 <td>
                                     <div class="radio dine">
                                         <div>
-                                            <input type="radio" id="rsvp-attend-yes" name="rsvp-attend" value="true" checked>
+                                            <input type="radio" id="rsvp-attend-yes" name="rsvp-attend" value="true"
+                                                checked>
                                             <label for="rsvp-attend-yes" class="black">예정</label>
                                         </div>
                                         <div>
@@ -786,7 +876,15 @@
             <h2>신동호&신나루미</h2>
         </div>
     </section>
-
+    <section data-aos="fade-up">
+        <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem;">소개</h3>
+        <p style="margin-top: 30px;">
+            <span style="font-weight: 700;">신두홍</span> <span style="font-size: 0.9rem;">의 장남 </span> <span
+                style="font-weight: 700;">신동호</span><br>
+            <span style="font-weight: 700;">치다 치즈코</span><span style="font-size: 0.9rem;"> 의 장녀 </span><span
+                style="font-weight: 700;">신나루미</span><br>
+        </p>
+    </section>
     <section data-aos="fade-up">
         <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem;">INVITATION</h3>
         <p style="margin-top: 30px;">
@@ -798,20 +896,75 @@
 
     <section data-aos="fade-up" style="background-color: #fafafa;">
         <div class="calendar-container">
-            <div class="calendar-header" style="font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 3px;">2026. 05</div>
+            <div class="calendar-header" style="font-size: 1.2rem; margin-bottom: 25px; letter-spacing: 3px;">2026. 05
+            </div>
             <table class="calendar-table" style="width: 100%;">
                 <thead>
                     <tr>
-                        <th style="color:#d9534f">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th style="color:#5bc0de">SAT</th>
+                        <th style="color:#d9534f">SUN</th>
+                        <th>MON</th>
+                        <th>TUE</th>
+                        <th>WED</th>
+                        <th>THU</th>
+                        <th>FRI</th>
+                        <th style="color:#5bc0de">SAT</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td class="wedding-day">2</td></tr>
-                    <tr><td style="color:#d9534f">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td style="color:#5bc0de">9</td></tr>
-                    <tr><td style="color:#d9534f">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td style="color:#5bc0de">16</td></tr>
-                    <tr><td style="color:#d9534f">17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td style="color:#5bc0de">23</td></tr>
-                    <tr><td style="color:#d9534f">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td style="color:#5bc0de">30</td></tr>
-                    <tr><td style="color:#d9534f">31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td class="wedding-day">2</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#d9534f">3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td style="color:#5bc0de">9</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#d9534f">10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td style="color:#5bc0de">16</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#d9534f">17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td style="color:#5bc0de">23</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#d9534f">24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td style="color:#5bc0de">30</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#d9534f">31</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
             <p style="margin-top: 25px; font-size: 0.85rem; color: #888;">5월 2일 토요일 오후 5시</p>
@@ -821,27 +974,52 @@
     <section data-aos="fade-up">
         <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">LOCATION(위치)</h3>
         <p style="margin-top:20px;"><strong>삼청각 청천당</strong><br>서울특별시 성북구 대사관로 3 청천당</p>
-        <iframe src="https://m.place.naver.com/place/11569723/home" scrolling="no" style="width:100%; max-width:500px; height:400px; border:none; border-radius:10px; margin: 20px auto; display:block;"></iframe>
-        <a href="https://map.naver.com/p/directions/-/3zhTvm,2ANlmP,%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EB%8C%80%EC%82%AC%EA%B4%80%EB%A1%9C%203,,SIMPLE_POI/-/car?c=14.00,0,0,0,dh" target="_blank" class="btn">네이버 지도로 보기</a>
+        <iframe src="https://m.place.naver.com/place/11569723/home" scrolling="no"
+            style="width:100%; max-width:500px; height:400px; border:none; border-radius:10px; margin: 20px auto; display:block;"></iframe>
+        <a href="https://map.naver.com/p/directions/-/3zhTvm,2ANlmP,%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EB%8C%80%EC%82%AC%EA%B4%80%EB%A1%9C%203,,SIMPLE_POI/-/car?c=14.00,0,0,0,dh"
+            target="_blank" class="btn">네이버 지도로 보기</a>
+        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">찾아오시는길</h3>
+        <div
+            style="margin: 15px 0; padding: 12px; background: #fff8f0; border: 1px solid #ffd1dc; border-radius: 10px; color: #444; font-size: 0.95rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">무료 셔틀버스 안내</strong>
+            <a href="https://www.samcheonggak.or.kr/location/%EC%82%BC%EC%B2%AD%EA%B0%81_%EC%85%94%ED%8B%80%EB%B2%84%EC%8A%A4_%EC%8B%9C%EA%B0%84%ED%91%9C.pdf?v=2026-03-30%20%EC%98%A4%ED%9B%84%2012:54:23" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
+                무료 셔틀버스 시간표 PDF 보기
+            </a>
+            <p>
+            <a href="https://map.naver.com/p/directions/3ziQFk,2AMYTw,%ED%95%9C%EC%84%B1%EB%8C%80%EC%9E%85%EA%B5%AC%EC%97%AD(%EC%82%BC%EC%84%A0%EA%B5%90)6%EB%B2%88%EC%B6%9C%EA%B5%AC,21405737,PLACE_POI/3ziPUx,2AMZiq,%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EC%84%B1%EB%B6%81%EB%A1%9C%208,,SIMPLE_POI/-/walk?c=20.00,0,0,0,dh" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
+                한성대입구역 6번출구 탑승장소 보기
+            </a>
+            </p>
+            <p>
+            <a href="https://map.naver.com/p/directions/3zi0fj,2AMt5c,%EC%95%88%EA%B5%AD%EC%97%AD(%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4)5%EB%B2%88%EC%B6%9C%EA%B5%AC,21405905,PLACE_POI/3zi0nJ,2AMshA,%EC%84%9C%EC%9A%B8%20%EC%A2%85%EB%A1%9C%EA%B5%AC%20%EA%B2%BD%EC%9A%B4%EB%8F%99%2091-4,,SIMPLE_POI/-/walk?c=20.00,0,0,0,dh" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
+                안국역 5번출구 탑승장소 보기
+            </a>
+            </p>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">※ 전신주에 셔틀버스 안내 표지판이 설치되어 있습니다.</p>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">※ 좌석은 선착순이며, 출발 10분 전에는 도착 부탁드립니다.</p>
+            <p></p>
+            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">주차장 안내</strong>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">2시간 무료 주차 가능합니다.</p>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">주차 공간이 붐빌 가능성이 있습니다. 양해 부탁드립니다.</p>
+        </div>
     </section>
-
     <section data-aos="fade-up">
         <h3 style="margin-bottom: 30px; font-size: 0.9rem; letter-spacing: 5px; color: #888;">GALLERY</h3>
-       <div class="gallery-grid">
-    <script>
-        // 사진 10개를 반복문으로 생성
-        for (let i = 0; i < 20; i++) {
-            let photoNumber = 1 + i;
-            let fileName = `${photoNumber}.JPG`;
-            
-            document.write(`
+        <div class="gallery-grid">
+            <script>
+                // 사진 10개를 반복문으로 생성
+                for (let i = 0; i < 20; i++) {
+                    let photoNumber = 1 + i;
+                    let fileName = `${photoNumber}.JPG`;
+
+                    document.write(`
                 <div class="photo-frame" data-aos="zoom-in" onclick="openModal('${fileName}')">
                     <img src="${fileName}" alt="웨딩사진 ${photoNumber}" style="cursor:pointer;">
                 </div>
             `);
-        }
-    </script>
-</div>
+                }
+            </script>
+        </div>
     </section>
 
     <footer style="padding: 60px 20px; color: #bbb; font-size: 0.8rem;">
@@ -923,10 +1101,10 @@
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = -20;
-                    this.size = Math.random() * 3 + 1; 
+                    this.size = Math.random() * 3 + 1;
                     this.speed = Math.random() * 1.5 + 0.5;
                     this.angle = Math.random() * 360;
-                    this.spin = Math.random() * 5 + 2; 
+                    this.spin = Math.random() * 5 + 2;
                     this.wind = Math.random() * 0.5;
                     const colors = ['#fff', '#fff59d', '#ffecb3', 'rgba(255, 255, 255, 0.8)'];
                     this.color = colors[Math.floor(Math.random() * colors.length)];
@@ -969,7 +1147,7 @@
             const modal = document.getElementById('attendanceModal');
             const today = new Date().toDateString();
             const lastSkip = localStorage.getItem('skipAttendanceModal');
-            
+
             if (lastSkip !== today) {
                 modal.classList.add('show');
             }
@@ -986,12 +1164,12 @@
 
         function handleAttendance() {
             const skipCheckbox = document.querySelector('.skip-today');
-            
+
             if (skipCheckbox.classList.contains('checked')) {
                 const today = new Date().toDateString();
                 localStorage.setItem('skipAttendanceModal', today);
             }
-            
+
             closeAttendanceModal();
             openRsvpModal();
         }
@@ -1037,7 +1215,7 @@
 
             // Google Apps Script로 데이터 전송
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyKUMwufBbyyf1UQvJ5xORf4a8DWJiZpCReIzNM27HE9L7oN60E2QmYe3cV0HZQDDHT/exec';
-            
+
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify(data)
@@ -1046,7 +1224,7 @@
                 .then(result => {
                     // 로딩 종료
                     loadingOverlay.classList.remove('show');
-                    
+
                     if (result.success) {
                         alert('참석 의사가 전달되었습니다. 감사합니다!');
                         document.getElementById('rsvp-name').value = '';
@@ -1064,7 +1242,7 @@
                 .catch(error => {
                     // 로딩 종료
                     loadingOverlay.classList.remove('show');
-                    
+
                     console.error('Error:', error);
                     alert('참석 의사가 저장되었습니다!');
                     document.getElementById('rsvp-name').value = '';
@@ -1080,53 +1258,7 @@
                 showAttendanceModal();
             }, 500);
         });
-
-        // 카카오톡 브라우저 감지
-        function checkKakaoTalk() {
-            const isKakaoTalk = /KAKAOTALK/i.test(navigator.userAgent);
-            const kakaoBanner = document.getElementById('kakaoBanner');
-            
-            if (isKakaoTalk && kakaoBanner) {
-                kakaoBanner.classList.add('show');
-                document.body.classList.add('kakao-detected');
-            }
-        }
-
-        // Safari로 열기
-        function openInSafari() {
-            const currentUrl = window.location.href;
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            
-            if (isIOS) {
-                // iOS - Safari로 열기
-                window.location.href = currentUrl;
-            } else {
-                // Android - 알림
-                alert('Android에서는 Safari가 없습니다.\nChrome으로 열어주세요.');
-            }
-        }
-
-        // Chrome으로 열기
-        function openInChrome() {
-            const currentUrl = window.location.href;
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            
-            if (isIOS) {
-                // iOS - Chrome으로 열기 (googlechromes:// scheme)
-                const chromeUrl = 'googlechromes://' + currentUrl.replace(/^https?:\/\//, '');
-                window.location.href = chromeUrl;
-            } else {
-                // Android - Chrome으로 열기
-                try {
-                    window.location.href = 'intent://' + currentUrl.split('://')[1] + '#Intent;action=android.intent.action.VIEW;data=' + encodeURIComponent(currentUrl) + ';package=com.android.chrome;scheme=https;end';
-                } catch(e) {
-                    window.location.href = currentUrl;
-                }
-            }
-        }
-
-        // 페이지 로드 시 카카오톡 확인
-        window.addEventListener('load', checkKakaoTalk);
     </script>
 </body>
+
 </html>
