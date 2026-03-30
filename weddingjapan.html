@@ -722,13 +722,13 @@
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-container">
             <div class="spinner"></div>
-            <div class="loading-text">참석 의사를 전달하는 중입니다...</div>
+            <div class="loading-text">回答を保存中です。</div>
         </div>
     </div>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <img class="modal-content" id="modalImg">
-        <div class="modal-close-hint">닫으려면 화면을 터치하세요</div>
+        <div class="modal-close-hint">閉じる場合は画面をタッチしてください。</div>
     </div>
 
     <div id="attendanceModal" class="popup-modal">
@@ -745,21 +745,19 @@
             <div class="info">
                 <div>
                     <div><img src="https://img.icons8.com/fluency-systems-regular/48/000000/hearts.png"></div>
-                    <div style="font-weight: bold;">신동호 &amp; 신나루미</div>
+                    <div style="font-weight: bold;">申東浩 &amp; 申成美</div>
                 </div>
                 <div>
                     <div><img src="https://img.icons8.com/fluency-systems-regular/48/000000/calendar--v1.png"></div>
-                    <div><span>2026년</span> 5월 2일 토요일 오후 5시</div>
+                    <div><span>2026年</span> 5月 2日 土曜日 午後 5시</div>
                 </div>
                 <div>
                     <div><img src="https://img.icons8.com/fluency-systems-regular/48/000000/place-marker--v1.png"></div>
-                    <div><span>삼청각 청천당</span></div>
+                    <div><span>三淸閣 聽泉堂</span></div>
                 </div>
             </div>
-            <button class="btn-submit" onclick="handleAttendance()">참석 의사 전달하기</button>
+            <button class="btn-submit" onclick="handleAttendance()">招待状に回答する</button>
             <div class="skip-today" onclick="toggleSkipToday(this)">
-                <div class="check"></div>
-                <div>오늘 하루 보지 않기</div>
             </div>
         </div>
     </div>
@@ -767,7 +765,6 @@
     <div id="rsvpModal" class="rsvp-modal-overlay">
         <div class="v--modal-box" onclick="event.stopPropagation()">
             <div class="rsvp-header">
-                <span>참석 의사 전달</span>
                 <button class="btn-close" onclick="closeRsvpModal()">
                     <svg width="15px" height="15px" viewBox="0 0 15 15" fill="black" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -781,7 +778,7 @@
                     <button
                         style="background: none; border: none; color: var(--dark-pink); cursor: pointer; font-size: 0.9rem; font-weight: 600; padding: 0; display: flex; align-items: center; gap: 5px;"
                         onclick="backToAttendanceModal()">
-                        <span>←</span> 뒤로가기
+                        <span>←</span> 戻る
                     </button>
                 </div>
                 <div class="rsvp-modal-inner">
@@ -792,64 +789,44 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th>구분</th>
+                                <th></th>
                                 <td>
                                     <div class="radio">
                                         <div>
                                             <input type="radio" id="rsvp-side-gr" name="rsvp-side" value="groom"
                                                 checked>
-                                            <label for="rsvp-side-gr" class="blue-fill">신랑측</label>
+                                            <label for="rsvp-side-gr" class="blue-fill">新郎側</label>
                                         </div>
                                         <div>
                                             <input type="radio" id="rsvp-side-br" name="rsvp-side" value="bride">
-                                            <label for="rsvp-side-br" class="red-fill">신부측</label>
+                                            <label for="rsvp-side-br" class="red-fill">新婦側</label>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th>성함</th>
+                                <th>お名前</th>
                                 <td>
-                                    <input type="text" id="rsvp-name" maxlength="12" placeholder="성함을 입력해주세요">
+                                    <input type="text" id="rsvp-name" maxlength="12" placeholder="お名前を入力してください">
                                 </td>
                             </tr>
                             <tr>
-                                <th>참석인원</th>
+                                <th>参加人数</th>
                                 <td>
-                                    <input type="number" id="rsvp-count" placeholder="본인 포함 총 참석인원" min="1" max="100"
+                                    <input type="number" id="rsvp-count" placeholder="本人を含む総参加人数" min="1" max="100"
                                         inputmode="numeric"
                                         onkeypress="return /[0-9]/.test(String.fromCharCode(event.which))">
                                 </td>
                             </tr>
                             <tr>
-                                <th>동행인</th>
+                                <th>同行者</th>
                                 <td>
-                                    <input type="text" id="rsvp-accompany" maxlength="30" placeholder="함께 오시는 분 성함">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>식사여부</th>
-                                <td>
-                                    <div class="radio dine">
-                                        <div>
-                                            <input type="radio" id="rsvp-attend-yes" name="rsvp-attend" value="true"
-                                                checked>
-                                            <label for="rsvp-attend-yes" class="black">예정</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="rsvp-attend-no" name="rsvp-attend" value="false">
-                                            <label for="rsvp-attend-no" class="black">안함</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="rsvp-attend-null" name="rsvp-attend" value="">
-                                            <label for="rsvp-attend-null" class="black">미정</label>
-                                        </div>
-                                    </div>
+                                    <input type="text" id="rsvp-accompany" maxlength="30" placeholder="同行する方の名前を入力してください">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn-submit" onclick="submitRsvp()">참석 의사 전달하기</button>
+                    <button class="btn-submit" onclick="submitRsvp()">回答する</button>
                 </div>
             </div>
         </div>
@@ -872,17 +849,16 @@
         <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem;">소개</h3>
         <p style="margin-top: 30px;">
             <span style="font-weight: 700;">申ﾄﾞｩﾎﾝ ・ 李順子</span> <span style="font-size: 0.9rem;">の 長男 </span> <span
-                style="font-weight: 700;">신동호</span><br>
+                style="font-weight: 700;">申東浩</span><br>
             <span style="font-weight: 700;">千田 栄一 ・千田 智津子</span><span style="font-size: 0.9rem;"> の 長女 </span><span
                 style="font-weight: 700;">申成美</span><br>
         </p>
     </section>
     <section data-aos="fade-up">
-        <h3 style="letter-spacing: 5px; color: #888; font-size: 0.9rem;">INVITATION</h3>
+        <h3 style="letter-spacing: 5px; color: #888; font-size: 1.9rem;">ご挨拶</h3>
         <p style="margin-top: 30px;">
-            함께 맞는 다섯 번째 봄,<br>
-            서로의 따뜻한 반려자가 되기로 약속했습니다.<br>
-            귀한 걸음으로 저희의 시작을 축복해 주세요.
+            共に迎える五度目の春、<br>これからの人生を<br>一緒に歩んでいくことを決めました。<br>未熟なふたりではございますが、<br>
+            新たなスタートを<br>皆さまと一緒に迎えられたら嬉しく思います。<br>
         </p>
     </section>
 
@@ -964,16 +940,16 @@
     </section>
 
     <section data-aos="fade-up">
-        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">LOCATION(위치)</h3>
+        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">LOCATION(場所)</h3>
         <p style="margin-top:20px;"><strong>三淸閣 聽泉堂</strong><br>ソウル特別市 ソンブッく デサグァンロ 3 聽泉堂</p>
         <iframe src="https://m.place.naver.com/place/11569723/home" scrolling="no"
             style="width:100%; max-width:500px; height:400px; border:none; border-radius:10px; margin: 20px auto; display:block;"></iframe>
         <a href="https://map.naver.com/p/directions/-/3zhTvm,2ANlmP,%EC%84%9C%EC%9A%B8%20%EC%84%B1%EB%B6%81%EA%B5%AC%20%EB%8C%80%EC%82%AC%EA%B4%80%EB%A1%9C%203,,SIMPLE_POI/-/car?c=14.00,0,0,0,dh"
-            target="_blank" class="btn">네이버 지도로 보기</a>
-        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">찾아오시는길</h3>
+            target="_blank" class="btn">NAVER マップで開く</a>
+        <h3 style="font-size: 0.9rem; letter-spacing: 5px; color: #888;">アクセス</h3>
         <div
             style="margin: 15px 0; padding: 12px; background: #fff8f0; border: 1px solid #ffd1dc; border-radius: 10px; color: #444; font-size: 0.95rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
-            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">무료 셔틀버스 안내</strong>
+            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">無料シャトルバス案内</strong>
             <a href="https://www.samcheonggak.or.kr/location/%EC%82%BC%EC%B2%AD%EA%B0%81_%EC%85%94%ED%8B%80%EB%B2%84%EC%8A%A4_%EC%8B%9C%EA%B0%84%ED%91%9C.pdf?v=2026-03-30%20%EC%98%A4%ED%9B%84%2012:54:23" target="_blank" style="color:#666; font-size:0.95rem; text-decoration: underline; display:block; margin:0;">
                 無料シャトルバス時刻表 PDFを見る
             </a>
@@ -985,8 +961,9 @@
             <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">※ 電信柱にシャトルバス案内表示があります。</p>
             <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">※ 座席は先着順で、出発10分前には到着をお願いいたします。</p>
             <p></p>
-            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">タクシー利用</strong>
-            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">ここクリック</p>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">タクシー利用する場合はタクシー運転手に下記を見せてください。</p>
+            <strong style="display:block; margin-bottom: 8px; color: #d81b60;">삼청각으로 가주세요. 대사관로 3 삼청각입니다.</strong>
+            <p style="margin: 8px 0 0; font-size: 0.85rem; color:#999;">※ 迷われた場合は、新郎・新婦までご連絡ください。</p>
         </div>
     </section>
     <section data-aos="fade-up">
@@ -1180,7 +1157,6 @@
             const name = document.getElementById('rsvp-name').value;
             const count = document.getElementById('rsvp-count').value;
             const accompany = document.getElementById('rsvp-accompany').value;
-            const attend = document.querySelector('input[name="rsvp-attend"]:checked').value;
 
             if (!name || !count) {
                 alert('성함과 참석인원을 입력해주세요.');
@@ -1195,8 +1171,7 @@
                 side: side,
                 name: name,
                 count: count,
-                accompany: accompany,
-                attend: attend
+                accompany: accompany
             };
 
             // Google Apps Script로 데이터 전송
