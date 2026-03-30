@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Permissions-Policy" content="accelerometer=(self), gyroscope=(self), magnetometer=(self)">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -713,12 +713,6 @@
         body.kakao-detected {
             padding-top: 65px;
         }
-        
-        #rsvpModal input,
-        #attendanceModal input {
-        font-size: 16px;
-    }
-
     </style>
 </head>
 
@@ -842,7 +836,7 @@
             </div>
         </div>
     </div>
-
+<button onclick="resetZoom()">画面を元に戻す</button>
     <div class="music-player" onclick="toggleMusic()">
         <span id="music-icon">🎵</span>
         <audio id="bgMusic" loop preload="auto">
@@ -1011,7 +1005,6 @@
         <p>新郎 申東浩&新婦 申成美</p>
         <p>Copyright 2026. All rights reserved.</p>
     </footer>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1200 });
@@ -1241,6 +1234,10 @@
                 showAttendanceModal();
             }, 500);
         });
+        function resetZoom() {
+    document.body.style.transform = "scale(1)";
+    document.body.style.transformOrigin = "0 0";
+}
     </script>
 </body>
 
